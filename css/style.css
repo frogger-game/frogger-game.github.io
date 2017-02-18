@@ -1,3 +1,19 @@
 body {
     text-align: center;
 }
+
+.controls{
+    float: left;
+    width: 100%;
+    border: 1px solid black;
+    z-index: 100;
+}
+
+.controls button {
+    text-align: center;
+}
+/*
+canvas {
+    margin: 0 auto;
+    float: left;
+}*/
