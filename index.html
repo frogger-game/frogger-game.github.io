@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
 </head>
 <body>
     <div id="game">
     </div>
     <div class="controls">
-        <button onclick="resetGame()">Reset</button>
+        <button onclick="resetGame()" class="btn btn-lg btn-primary">Reset</button>
+        <select title="Select yout player" class="selectpicker" id="player-select" onchange="changePlayer()">
+            <option data-content="<img src='images/char-boy.png'><span>Boy</span>" value="char-boy.png" selected></option>
+            <option data-content="<img src='images/char-cat-girl.png'><span>Cat Girl</span>" value="char-cat-girl.png"></option>
+            <option data-content="<img src='images/char-horn-girl.png'><span>Horn Girl</span>" value="char-horn-girl.png"></option>
+            <option data-content="<img src='images/char-pink-girl.png'><span>Pink Girl</span>" value="char-pink-girl.png"></option>
+            <option data-content="<img src='images/char-princess-girl.png'><span>Princess Girl</span>" value="char-princess-girl.png"></option>
+        </select>
+        <img >
     </div>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 </body>
 </html>

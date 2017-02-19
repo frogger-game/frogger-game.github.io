@@ -5,12 +5,26 @@ body {
 .controls{
     float: left;
     width: 100%;
-    border: 1px solid black;
     z-index: 100;
 }
 
 .controls button {
     text-align: center;
+}
+
+.bootstrap-select .dropdown-toggle{
+    padding: 0;
+}
+
+.bootstrap-select li {
+    height: 45px;
+    overflow: hidden;
+}
+
+.bootstrap-select img {
+    width: 45px;
+    height: 70px;
+    margin-top: -20px;
 }
 /*
 canvas {
