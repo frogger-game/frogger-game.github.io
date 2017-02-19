@@ -1,6 +1,16 @@
-frontend-nanodegree-arcade-game
+Frogger Game - frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+# Summary
+Frogger Game is a game base of the classic Frogger arcade game.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+This project is a fork of [this](https://github.com/fernandodof/frontend-nanodegree-arcade-game).
+
+## Instalation
+Simply clone or download this project [here](https://github.com/fernandodof/frontend-nanodegree-arcade-game/archive/master.zip) and open index.html on your browser
+
+### Goals
+The goal is simple, use the arrow keys to move the player across the bricks to the water without getting hit by any bugs.
+Every time the player wins the game level is increased.
+
+Have fun!
