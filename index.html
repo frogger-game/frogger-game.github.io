@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
 </head>
 <body>
-    <div id="game">
-    </div>
     <div class="controls">
         <button onclick="resetGame()" class="btn btn-lg btn-primary">Reset</button>
         <select title="Select yout player" class="selectpicker" id="player-select" onchange="changePlayer()">
@@ -21,12 +19,16 @@
             <option data-content="<img src='images/char-pink-girl.png'><span>Pink Girl</span>" value="char-pink-girl.png"></option>
             <option data-content="<img src='images/char-princess-girl.png'><span>Princess Girl</span>" value="char-princess-girl.png"></option>
         </select>
-        <img >
     </div>
+    <div id="game">
+    </div>
+    <div id="level">
+        <p>Level: <span id="current-level">1</span></p>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 </body>

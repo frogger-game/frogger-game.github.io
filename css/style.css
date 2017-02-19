@@ -3,31 +3,35 @@ body {
 }
 
 .controls{
-    float: left;
     width: 100%;
-    z-index: 100;
 }
 
 .controls button {
     text-align: center;
 }
 
-.bootstrap-select .dropdown-toggle{
+.controls .bootstrap-select{
+    float: left;
+    width: 200px;
+}
+
+.controls .bootstrap-select .dropdown-toggle{
     padding: 0;
 }
 
-.bootstrap-select li {
+.controls .bootstrap-select li {
     height: 45px;
     overflow: hidden;
 }
 
-.bootstrap-select img {
+.controls .bootstrap-select img {
     width: 45px;
     height: 70px;
     margin-top: -20px;
 }
-/*
-canvas {
-    margin: 0 auto;
+
+.controls #level {
+    width: 100px;
     float: left;
-}*/
+    text-align: center;
+}

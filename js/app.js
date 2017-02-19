@@ -1,11 +1,18 @@
 // Enemies our player must avoid
-var Enemy = function(x, y, speed) {
+//The parameter type will have the value of fast or slow, meaning that the enemy is going to move fast or not
+var enemyTypes = {
+    BIG: 'bigBug',
+    SMALL: 'smallBug'
+};
+
+var Enemy = function(x, y, speed, type) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.sprite = 'images/enemy-bug.png';
+    this.type = type;
+    this.sprite = this.type === enemyTypes.BIG ? 'images/enemy-bug.png' : 'images/enemy-bug-small.png';
 };
 
 // Update the enemy's position, required method for game
@@ -20,8 +27,8 @@ Enemy.prototype.update = function(dt) {
     //And Y location is random
     if (this.x >= 505) {
         this.x = 0;
-        this.y = getRandomYLocation();
-        this.speed = getRandomSpeed();
+        this.y = getRandomYLocation(this.type);
+        this.speed = this.type === enemyTypes.BIG ? getRandomFastSpeed() : getRandomSlowSpeed();
     }
 
     //check for colisions on every update
@@ -43,6 +50,7 @@ var Player = function(x, y, speed, sprite) {
     this.sprite = sprite;
 };
 
+//Function not used
 Player.prototype.update = function() {
 
 };
@@ -80,19 +88,21 @@ var Gem = function(x, y, sprite) {
 
 };
 
+//This function is resposible for colision checks
 var collisionCheck = function(aThing) {
-    if ((player.y + 131 >= aThing.y + 90) && (player.x + 25 <= aThing.x + 88) && (player.y + 73 <= aThing.y + 135) && (player.x + 76 >= aThing.x + 11)) {
-        console.log('Enemy collision');
-        player.x = 202.5;
-        player.y = 383;
+    //if the collision is with a big enemy
+    if ((aThing.type === enemyTypes.BIG) && (player.y + 131 >= aThing.y + 90) && (player.x + 25 <= aThing.x + 88) && (player.y + 73 <= aThing.y + 135) && (player.x + 76 >= aThing.x + 11)) {
+        player.reset();
+        //if the collision if with a small enemy
+    } else if ((aThing.type === enemyTypes.SMALL) && (player.y + 131 >= aThing.y + 45) && (player.x + 25 <= aThing.x + 44) && (player.y + 73 <= aThing.y + 67.5) && (player.x + 76 >= aThing.x + 5.5)) {
+        player.reset();
     }
 
+    //if the player reached the water
     if (player.y + 63 <= 0) {
         player.reset();
-        console.log('you wom');
 
-        level++;
-        increaseDifficulty(level);
+        increaseDifficulty();
     }
 
     // prevent player from going out of bounds
@@ -111,25 +121,51 @@ var collisionCheck = function(aThing) {
 };
 
 // Create more enemies based on level
-var increaseDifficulty = function(level) {
+var increaseDifficulty = function() {
     // remove all previous enemies
-    allEnemies.length = 0;
+    allEnemies = [];
+    level++;
+
+    $('#current-level').html(level);
+
+    //increase player speed when the level is multiple of 3
+    if (level % 3 === 0) {
+        player.speed += 10;
+    }
 
     // create all enemies
-    for (var i = 0; i <= level; i++) {
-        var enemy = new Enemy(0, getRandomYLocation(), getRandomSpeed());
+    for (var i = 1; i <= level; i++) {
+        //if the index is multiple of 3 we create a big enemy or a small one otherwise
+        if (i % 3 === 0) {
+            var enemy = new Enemy(0, getRandomYLocation(enemyTypes.BIG), getRandomFastSpeed(), enemyTypes.BIG);
+        } else {
+            var enemy = new Enemy(0, getRandomYLocation(enemyTypes.SMALL), getRandomSlowSpeed(), enemyTypes.SMALL);
+        }
+
         allEnemies.push(enemy);
     }
 };
 
 
 //Util functions bellow
-var getRandomYLocation = function() {
-    return (Math.random() * 210) + 40;
+
+//Get random Y location based of enemy type
+var getRandomYLocation = function(enemyType) {
+    var location;
+    if (enemyType === enemyTypes.BIG) {
+        location = (Math.random() * 210) + 40;
+    } else {
+        location = (Math.random() * 240) + 80;
+    }
+    return location;
 };
 
-var getRandomSpeed = function() {
-    return (Math.random() * 200) + 10;
+var getRandomFastSpeed = function() {
+    return (Math.random() * 110) + 60;
+};
+
+var getRandomSlowSpeed = function() {
+    return (Math.random() * 50) + 20;
 };
 
 // Now instantiate your objects.
@@ -145,14 +181,14 @@ var playerSprite = 'images/char-boy.png';
 
 //Reset or init game objects
 var resetGame = function() {
-    console.log(Resources.get('images/enemy-bug.png'));
     player = new Player(200.5, 383, 50, playerSprite);
 
     allEnemies = [];
-    enemy = new Enemy(0, getRandomYLocation(), getRandomSpeed());
+    enemy = new Enemy(0, getRandomYLocation(enemyTypes.SMALL), getRandomSlowSpeed(), enemyTypes.SMALL);
     allEnemies.push(enemy);
 
     level = 1;
+    $('#current-level').html(level);
 };
 resetGame();
 
@@ -160,7 +196,6 @@ resetGame();
 //Change player and also reset game
 var changePlayer = function() {
     playerSprite = 'images/' + $('#player-select').val();
-    console.log('images/' + $('#player-select').val());
     resetGame();
 };
 
