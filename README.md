@@ -2,7 +2,7 @@ Frogger Game - frontend-nanodegree-arcade-game
 ===============================
 
 # Summary
-Frogger Game is a game base of the classic Frogger arcade game.
+Frogger Game is a game based of the classic Frogger arcade game.
 
 This project is a fork of [this](https://github.com/fernandodof/frontend-nanodegree-arcade-game).
 
